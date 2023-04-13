@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Diagnostics;
+using Microsoft.Extensions.Logging;
 using TechJobsMVCAutograded6.Data;
 using TechJobsMVCAutograded6.Models;
 
@@ -41,10 +43,25 @@ public class ListController : Controller
         return View();
     }
 
+    //[HttpGet]
     // TODO #2 - Complete the Jobs action method
     public IActionResult Jobs(string column, string value)
     {
-        return View();
+        List<Job> jobs;
+        if (column.ToLower().Equals("all"))
+        {
+            jobs = JobData.FindAll();
+            ViewBag.title = "All Jobs";
+        } else
+        {
+            jobs = JobData.FindByColumnAndValue(column, value);
+            ViewBag.title = "Seleted Jobs";
+        }
+        ViewBag.jobs = jobs;
+
+        return View(jobs);
+
     }
+
 }
 

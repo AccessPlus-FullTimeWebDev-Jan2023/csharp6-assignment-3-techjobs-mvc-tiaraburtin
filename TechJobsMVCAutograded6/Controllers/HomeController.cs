@@ -12,6 +12,7 @@ public class HomeController : Controller
         actionChoices.Add("search", "Search");
         actionChoices.Add("list", "List");
 
+
         ViewBag.actions = actionChoices;
         return View();
     }

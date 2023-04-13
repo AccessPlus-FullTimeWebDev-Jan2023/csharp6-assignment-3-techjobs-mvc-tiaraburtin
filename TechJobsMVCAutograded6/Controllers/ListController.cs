@@ -54,8 +54,8 @@ public class ListController : Controller
             ViewBag.title = "All Jobs";
         } else
         {
-            jobs = JobData.FindByColumnAndValue();
-            throw new NotImplementedException();
+            jobs = JobData.FindByColumnAndValue(column, value);
+            ViewBag.title = "Seleted Jobs";
         }
         ViewBag.jobs = jobs;
 
